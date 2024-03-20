@@ -10,9 +10,9 @@ The editor is written in Rust and it uses the [egui](https://egui.rs) + eframe f
 
 ## Installation
 
-1 - Make sure you have Rust installed. If not, you can install it by following the instructions at [rustup.rs](https://rustup.rs).
-2 - Clone this repository.
-3 - Run `cargo run --release` in the root of the repository.
+1 - Make sure you have Rust installed. If not, you can install it by following the instructions at [rustup.rs](https://rustup.rs).  
+2 - Clone this repository.  
+3 - Run `cargo run --release` in the root of the repository.  
 
 ## Usage
 
