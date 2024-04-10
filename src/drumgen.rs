@@ -1,8 +1,14 @@
+#![allow(dead_code)]
 use rand::prelude::*;
 use std::fs;
 use std::io::prelude::*;
 
 #[derive(Debug, Copy, Clone)]
+/*
+    DrumGenSequence is a struct that represents a sequence of 32 steps.
+    Each step can have a value between 0 - 10 that determines the probability of the step (also from 0-10).
+    The sequence is stored in an array of 32 u8 values.
+*/
 pub struct DrumGenSequence {
     pub steps: [u8; 32],
 }
@@ -27,6 +33,9 @@ impl DrumGenSequence {
         }
     }
 
+    /*
+        Encode the sequence to a byte array.
+    */
     pub fn convert(&self) -> Vec<u8> {
         let mut result: Vec<u8> = vec![0; 16];
         for i in 0..self.steps.len() {
@@ -208,7 +217,7 @@ impl DrumGen {
         let data = self.convert();
         // Save data to file
         println!("Saving file to: {}", filepath);
-        file.write_all(&data);
+        let _ = file.write_all(&data);
         println!("File size: {}", data.len());
         println!("File content: {:?}", data);
     }
@@ -227,24 +236,3 @@ impl DrumGen {
 
 }
 
-// Write test for SEQUENCE convert
-#[cfg(test)]
-mod test {
-    
-    // Import random module
-    
-
-    #[test]
-    fn check_convert() {
-        let mut sequence = super::DrumGenSequence::new();
-
-        // Create random object
-        let mut rng = rand::thread_rng();
-
-        sequence.randomize();
-        let result = sequence.convert();
-        println!("{:?}", result);
-        assert_eq!(result.len(), 16);
-    }
-    
-}

@@ -18,17 +18,13 @@ use egui::style::HandleShape;
 
 pub fn main_gui() -> Result<(), eframe::Error> {
     let options = eframe::NativeOptions {
-        // initial_window_size: Some(egui::vec2(1100.0, 600.0)),
         viewport: egui::ViewportBuilder::default()
             .with_inner_size(egui::vec2(1100.0, 600.0))
-            // .with_resizable(false)
             ,
-            
-            
         ..Default::default()
     };
     eframe::run_native(
-        "NGEN - DrumGen Template Editor",
+        "NGEN – DrumGen Template Editor",
         options,
         Box::new(|_cc| {
             Box::<DrumgenEditor>::default()
@@ -230,7 +226,7 @@ impl eframe::App for DrumgenEditor {
             .width_range(200.0..=400.0)
             .show_inside(ui, |ui| {
                 ui.vertical_centered(|ui| {
-                    ui.label("Output");
+                    ui.label("Output Preview");
                     egui::ScrollArea::vertical().show(ui, |ui| {
                         if ui.button("Convert").clicked() {
                             self.output = self.template.convert();
@@ -302,10 +298,10 @@ fn preview_files_being_dropped(ctx: &egui::Context) {
 }
 
 
+
 pub fn add_sequence_gui(ui: &mut Ui, editor: &mut DrumgenEditor, layer: usize, velocity: u8, ) {
     ui.label(egui::RichText::new(format!("VELOCITY: {}", velocity)).strong());
     ui.horizontal(|ui| {
-        // ui.label("Effects");
         ui.spacing_mut().slider_width = 50.0;
 
         egui::ScrollArea::horizontal()
