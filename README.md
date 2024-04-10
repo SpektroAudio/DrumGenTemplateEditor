@@ -16,14 +16,17 @@ The editor is written in Rust and it uses the [egui](https://egui.rs) + eframe f
 
 ## Usage
 
-The editor lets you create and edit DrumGen templates. You can create new templates, load existing ones, and save them to disk as .hex files.
+The editor lets you create new DrumGen templates, load and edit existing ones, and save them to disk as .hex files.
 
 Each template contains 32-step probability sequences for 4 parts with 3 velocity layers each that can be edited using the sliders.  
-Additional features include the ability to randomize layers (with adjustable random settings) and shift the sequence back and forth.
+
+The editor also includes options for randomizing layers (with adjustable random settings) and shifting the sequence back and forth.
 
 It's also possible to edit multiple steps in the same layer at once by holding down numbers 1-8 on the keyboard while dragging the sliders.
 
 *Attention*: DrumGen HEX filenames must have at most 8 characters and the .hex extension (e.g. `drum0001.hex`).
+
+To use your templates in NGEN, copy the .hex file created to the DRUMGEN folder (/DRUMGEN) on your NGEN SD card.
 
 ---
 
