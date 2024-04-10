@@ -2,7 +2,7 @@
 
 ## About
 
-This is a GUI-based template editor for the [DrumGen generator](https://ngen.spektroaudio.com/generators/#drumgen) available in [NGEN – Algorithmic MIDI Workstation](https://spektroaudio.com/ngen).
+GUI-based template editor for the [DrumGen generator](https://ngen.spektroaudio.com/generators/#drumgen) available in [NGEN – Algorithmic MIDI Workstation](https://spektroaudio.com/ngen).
 
 ![](images/editor_screenshot.png)
 
