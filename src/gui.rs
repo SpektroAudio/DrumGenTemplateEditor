@@ -5,6 +5,9 @@ use egui::*;
 use egui::special_emojis::GITHUB;
 use egui::style::HandleShape;
 
+use simplelog::*;
+use log::{LevelFilter};
+use std::fs::File;
 
 /*
  
@@ -17,6 +20,8 @@ use egui::style::HandleShape;
 */
 
 pub fn main_gui() -> Result<(), eframe::Error> {
+
+    let _ = WriteLogger::init(LevelFilter::Info, Config::default(), File::create("editor.log").unwrap());
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_inner_size(egui::vec2(1100.0, 600.0))

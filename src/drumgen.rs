@@ -2,6 +2,7 @@
 use rand::prelude::*;
 use std::fs;
 use std::io::prelude::*;
+use log::{info, debug};
 
 #[derive(Debug, Copy, Clone)]
 /*
@@ -54,11 +55,11 @@ impl DrumGenSequence {
     }
 
     pub fn decode(&mut self, data: Vec<u8>) {
-        println!("Decoding data: {:?} ({} bytes)", data, data.len());
+        debug!("Decoding data: {:?} ({} bytes)", data, data.len());
         for i in 0..(self.steps.len() - 1) {
             let index = i / 2;
             let value = data[index];
-            println!("i: {}, index: {}, value: {}", i, index, value);
+            debug!("i: {}, index: {}, value: {}", i, index, value);
             if i % 2 == 0 {
                 self.steps[i] = value & 15;
             } else {
@@ -206,9 +207,9 @@ impl DrumGen {
         // Read file content and parse to bytes
         let mut data: Vec<u8> = Vec::new();
         file.read_to_end(&mut data).unwrap();
-
-        println!("File size: {}", data.len());
-        println!("File content: {:?}", data);
+        info!("Parsing file: {}", filepath);
+        info!("File size: {}", data.len());
+        debug!("File content: {:?}", data);
         self.decode(data);
     }
 
@@ -216,10 +217,10 @@ impl DrumGen {
         let mut file = fs::File::create(&filepath).unwrap();
         let data = self.convert();
         // Save data to file
-        println!("Saving file to: {}", filepath);
+        info!("Saving file to: {}", filepath);
         let _ = file.write_all(&data);
-        println!("File size: {}", data.len());
-        println!("File content: {:?}", data);
+        info!("File size: {}", data.len());
+        debug!("File content: {:?}", data);
     }
 
     pub fn decode(&mut self, data: Vec<u8>) {
