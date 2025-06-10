@@ -2,7 +2,6 @@ name: Release macOS Build
 
 on:
   push:
-    branches: [main]  # Change to your release branch
     tags:
       - 'v*'
 
@@ -24,7 +23,7 @@ jobs:
     - name: Set version from Git tag
       id: set-version
       run: |
-        echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+        echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
     - name: Install cargo-bundle
       run: cargo install cargo-bundle
