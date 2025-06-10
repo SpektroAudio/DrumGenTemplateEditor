@@ -43,7 +43,7 @@ jobs:
         sleep 2
 
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631
       with:
         name: "DrumGen Template Editor ${{ env.VERSION }}"
         tag_name: "${{ env.VERSION }}"
