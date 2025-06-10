@@ -24,6 +24,7 @@ jobs:
       id: set-version
       run: |
         echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        echo "Version: $VERSION"
 
     - name: Install cargo-bundle
       run: cargo install cargo-bundle
@@ -34,14 +35,13 @@ jobs:
     - name: Zip the .app bundle
       run: |
         cd target/release/bundle/osx
-        zip -r "drum_gen_template_editor-${{ env.VERSION }}.zip" "DrumGen Template Editor.app"
-        mv "drum_gen_template_editor-${{ env.VERSION }}.zip" ../../../
+        zip -r "drumgen_template_editor-${{ env.VERSION }}.zip" "DrumGen Template Editor.app"
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-        name: "v${{ env.VERSION }}"
+        name: "${{ env.VERSION }}"
         tag_name: "${{ env.VERSION }}"
-        files: "drum_gen_template_editor-${{ env.VERSION }}.zip"  # Corrected the file path here
+        files: "target/release/bundle/osx/drumgen_template_editor-${{ env.VERSION }}.zip"  # Corrected the file path here
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
