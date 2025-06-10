@@ -37,10 +37,15 @@ jobs:
         cd target/release/bundle/osx
         zip -r "drumgen_template_editor-${{ env.VERSION }}.zip" "DrumGen Template Editor.app"
 
+    - name: Ensure file is written
+      run: |
+        sync  # flush disk writes
+        sleep 2
+
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-        name: "${{ env.VERSION }}"
+        name: "DrumGen Template Editor ${{ env.VERSION }}"
         tag_name: "${{ env.VERSION }}"
         files: "target/release/bundle/osx/drumgen_template_editor-${{ env.VERSION }}.zip"  # Corrected the file path here
       env:
