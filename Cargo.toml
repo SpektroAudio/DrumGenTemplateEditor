@@ -5,6 +5,8 @@ edition = "2021"
 description = "DrumGen Template Editor for NGEN"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+"log" = []
 
 [dependencies]
 rand = "0.8.4"
@@ -17,7 +19,7 @@ simplelog = "0.12.1"
 [package.metadata.bundle]
 name = "DrumGen Template Editor"
 identifier = "com.spektroaudio.drumgeneditor"
-icon = ["32x32.png", "128x128.png", "128x128@2x.png"]
+icon = ["icons/512x512@2x.png"]
 version = "0.1.0"
 resources = []
 copyright = "Copyright (c) Spektro Audio 2024. All rights reserved."

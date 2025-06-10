@@ -21,13 +21,16 @@ use std::fs::File;
 
 pub fn main_gui() -> Result<(), eframe::Error> {
 
+    #[cfg(feature="log")]
     let _ = WriteLogger::init(LevelFilter::Info, Config::default(), File::create("editor.log").unwrap());
+    
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_inner_size(egui::vec2(1100.0, 600.0))
             ,
         ..Default::default()
     };
+
     eframe::run_native(
         "NGEN – DrumGen Template Editor",
         options,

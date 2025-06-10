@@ -1,0 +1,50 @@
+name: Release macOS Build
+
+on:
+  push:
+    branches: [main]  # Change to your release branch
+    tags:
+      - 'v*'
+
+jobs:
+  build-release:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        profile: minimal
+        override: true
+
+    - name: Get version from Cargo.toml
+        id: get-version
+        run: |
+          VERSION=$(grep '^version' Cargo.toml | head -n1 | sed 's/[^0-9.]*//g')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Install cargo-bundle
+      run: cargo install cargo-bundle
+
+    - name: Build release bundle
+      run: cargo bundle --release
+
+    - name: Zip the .app bundle
+        run: |
+          cd target/release/bundle/osx
+          zip -r "drum_gen_template_editor-v${{ env.VERSION }}.zip" "DrumGen Template Editor.app"
+          mv "drum_gen_template_editor-v${{ env.VERSION }}.zip" ../../../
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        name: "v${{ env.VERSION }}"
+        tag_name: "v${{ env.VERSION }}"
+        files: "target/drumgen_template_editor-macos-v${{ env.VERSION }}.zip"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
