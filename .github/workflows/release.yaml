@@ -21,12 +21,9 @@ jobs:
         profile: minimal
         override: true
 
-    - name: Get version from Cargo.toml
-        id: get-version
-        run: |
-          VERSION=$(grep '^version' Cargo.toml | head -n1 | sed 's/[^0-9.]*//g')
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+    - name: Set version from Git tag
+      id: set-version
+      run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
     - name: Install cargo-bundle
       run: cargo install cargo-bundle
@@ -35,10 +32,10 @@ jobs:
       run: cargo bundle --release
 
     - name: Zip the .app bundle
-        run: |
-          cd target/release/bundle/osx
-          zip -r "drum_gen_template_editor-v${{ env.VERSION }}.zip" "DrumGen Template Editor.app"
-          mv "drum_gen_template_editor-v${{ env.VERSION }}.zip" ../../../
+      run: |
+        cd target/release/bundle/osx
+        zip -r "drum_gen_template_editor-v${{ env.VERSION }}.zip" "DrumGen Template Editor.app"
+        mv "drum_gen_template_editor-v${{ env.VERSION }}.zip" ../../../
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
