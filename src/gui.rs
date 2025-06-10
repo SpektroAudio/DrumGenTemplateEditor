@@ -106,6 +106,10 @@ impl eframe::App for DrumgenEditor {
                     if let Some(path) = rfd::FileDialog::new().pick_file() {
                         self.picked_path = Some(path.display().to_string());
                         self.template.parse_file(path.display().to_string());
+                        if let Some(name) = path.file_stem() {
+                            self.name = format!("{}", name.to_string_lossy());
+                        }
+                        
                     }
                 }
                 if ui.button("Save").clicked() {

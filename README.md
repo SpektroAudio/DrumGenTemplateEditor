@@ -12,7 +12,7 @@ The editor is written in Rust and it uses the [egui](https://egui.rs) + eframe f
 
 ### macOS
 
-1 - [Download the latest version for macOS](https://github.com/SpektroAudio/DrumGenTemplateEditor/releases/download/v0.1.0/drumgen_template_editor-v0.1.0.zip)
+1 - [Download the latest version for macOS](https://github.com/SpektroAudio/DrumGenTemplateEditor/releases/download/v0.1.1/drumgen_template_editor-v0.1.0.zip)
 
 2 - Extract the zip file and move the .app file to the Applications folder
 
