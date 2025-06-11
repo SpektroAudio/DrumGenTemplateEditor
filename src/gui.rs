@@ -5,9 +5,11 @@ use egui::*;
 use egui::special_emojis::GITHUB;
 use egui::style::HandleShape;
 
+#[cfg(feature="logging")]
 use simplelog::*;
-use log::{LevelFilter};
+#[cfg(feature="logging")]
 use std::fs::File;
+
 
 /*
  
@@ -21,7 +23,7 @@ use std::fs::File;
 
 pub fn main_gui() -> Result<(), eframe::Error> {
 
-    #[cfg(feature="log")]
+    #[cfg(feature="logging")]
     let _ = WriteLogger::init(LevelFilter::Info, Config::default(), File::create("editor.log").unwrap());
     
     let options = eframe::NativeOptions {
