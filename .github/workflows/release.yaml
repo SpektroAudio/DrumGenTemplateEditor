@@ -35,7 +35,7 @@ jobs:
     - name: Zip the .app bundle
       run: |
         cd target/release/bundle/osx
-        zip -r "drumgen_template_editor-${{ env.VERSION }}.zip" "DrumGen Template Editor.app"
+        zip -r "drumgen_template_editor-macos-${{ env.VERSION }}.zip" "DrumGen Template Editor.app"
 
     - name: Ensure file is written
       run: |
@@ -47,6 +47,6 @@ jobs:
       with:
         name: "DrumGen Template Editor ${{ env.VERSION }}"
         tag_name: "${{ env.VERSION }}"
-        files: "target/release/bundle/osx/drumgen_template_editor-${{ env.VERSION }}.zip"  # Corrected the file path here
+        files: "target/release/bundle/osx/drumgen_template_editor-macos-${{ env.VERSION }}.zip"  # Corrected the file path here
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
